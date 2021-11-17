@@ -66,4 +66,4 @@ RELRO           STACK CANARY      NX            PIE             RPATH      RUNPA
 No RELRO        No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   /home/user/bonus0/bonus0
 bonus0@RainFall:~$
 ```
-╮(￣_￣)╭
+# ╮(￣_￣)╭

@@ -1,3 +1,4 @@
+
 1.	gdb level0
 2.	disas main
 
@@ -10,4 +11,4 @@
 5. cd ../level1 && cat .pass
 6. su level1
 
-( ° ∀ ° )ﾉﾞ
+# ╮(￣_￣)╭

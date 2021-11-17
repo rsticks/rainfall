@@ -9,15 +9,17 @@ int main(int argc, char **argv)
 	char    rest[65] = {0};
 	FILE    *file = fopen("/home/user/end/.pass", "r");
 
-   	if (argc != 2 || !file)
-		return (1);
-	fread(flag, 1, 66, file);
-	flag[66] = 0;
-	flag[atoi(argv[1])] = 0;
-	fread(rest, 1, 65, file);
-	fclose(file);
-	if (strcmp(rest, argv[1]) == 0)
-		execl("/bin/sh", "sh", NULL);
-	else
-		puts(rest);
+   	if ((!fs) || (argc != 2))
+        return -1;
+
+      fread(flag, 1, 66, fs);
+      flag[atoi(argv[1])] = 0;
+
+      fread(rest, 1, 65, fs);
+      fclose(fs);
+
+      if ( strcmp(flag, argv[1]) == 0)
+        execl("/bin/sh","sh",0);
+      else
+        puts(rest);
 }
